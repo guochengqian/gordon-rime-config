@@ -20,7 +20,7 @@ My [Squirrel](https://github.com/rime/squirrel) (Rime input method for macOS) co
 ## Install
 
 ```bash
-git clone https://github.com/guochengqian/gordon-rime-config.git
+git clone <this-repo-url>
 cp -R gordon-rime-config/* ~/Library/Rime/
 ```
 
