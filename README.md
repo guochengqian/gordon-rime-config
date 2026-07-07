@@ -1,7 +1,16 @@
 # Gordon's Rime Config
 
-My [Squirrel](https://github.com/rime/squirrel) (Rime input method for macOS) configuration:
+My [Rime](https://rime.im) input method configuration:
 朙月拼音·简化字 with inline English mixed input and emoji suggestions.
+
+📖 Write-up / background: <https://guochengqian.github.io/blog/squirrel-rime/>
+
+## Layout
+
+| Directory   | Platform                                                              |
+| ----------- | --------------------------------------------------------------------- |
+| `squirrel/` | macOS — [Squirrel](https://github.com/rime/squirrel)                  |
+| `hamster/`  | iOS — [Hamster](https://github.com/imfuxiao/Hamster) *(coming soon)* |
 
 ## Features
 
@@ -17,11 +26,11 @@ My [Squirrel](https://github.com/rime/squirrel) (Rime input method for macOS) co
   Shift keys do nothing (no accidental mode switches).
 - Horizontal stacked candidate window; inline candidate disabled in iTerm2.
 
-## Install
+## Install (macOS / Squirrel)
 
 ```bash
-git clone <this-repo-url>
-cp -R gordon-rime-config/* ~/Library/Rime/
+git clone https://github.com/guochengqian/gordon-rime-config.git
+cp -R gordon-rime-config/squirrel/* ~/Library/Rime/
 ```
 
 Then redeploy Squirrel (menu bar → 重新部署, or
@@ -44,5 +53,5 @@ because the emoji dictionary is keyed on traditional Chinese.
 ## Credits
 
 - [rime/squirrel](https://github.com/rime/squirrel) — the macOS Rime frontend
-- [rime/rime-emoji](https://github.com/rime/rime-emoji) — emoji OpenCC data (`opencc/emoji*`)
+- [rime/rime-emoji](https://github.com/rime/rime-emoji) — emoji OpenCC data (`squirrel/opencc/emoji*`)
 - [BlindingDark/rime-easy-en](https://github.com/BlindingDark/rime-easy-en) — inline English (`easy_en*`, `lua/easy_en.lua`)
