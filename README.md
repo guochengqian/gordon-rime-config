@@ -1,57 +1,22 @@
-# Gordon's Rime Config
+# Gordon 的 Rime 配置
 
-My [Rime](https://rime.im) input method configuration:
-朙月拼音·简化字 with inline English mixed input and emoji suggestions.
+朙月拼音·简化字 + 中英混输 + Emoji。详细介绍见博客:<https://guochengqian.github.io/blog/squirrel-rime/>
 
-📖 Write-up / background: <https://guochengqian.github.io/blog/squirrel-rime/>
+- `squirrel/` — macOS([Squirrel 鼠须管](https://github.com/rime/squirrel))
+- `hamster/` — iOS([Hamster 仓输入法](https://github.com/imfuxiao/Hamster)),待添加
 
-## Layout
+## 功能
 
-| Directory   | Platform                                                              |
-| ----------- | --------------------------------------------------------------------- |
-| `squirrel/` | macOS — [Squirrel](https://github.com/rime/squirrel)                  |
-| `hamster/`  | iOS — [Hamster](https://github.com/imfuxiao/Hamster) *(coming soon)* |
+- 中文模式下直接打英文单词,无需切换([rime-easy-en](https://github.com/BlindingDark/rime-easy-en))
+- 打中文出 Emoji 候选:中国 → 🇨🇳([rime-emoji](https://github.com/rime/rime-emoji))
+- `@` 永远直接上屏,方便打邮箱
+- Caps Lock 直接上屏字母,Shift 不切换中英文
 
-## Features
-
-- **朙月拼音·简化字** (`luna_pinyin_simp`) as the main schema, 5 candidates per page.
-- **Inline English** via [rime-easy-en](https://github.com/BlindingDark/rime-easy-en):
-  type English words directly in Chinese mode without switching
-  (sentence mode and completion noise tuned down; `@` always commits as plain
-  half-width `@`, handy for emails and handles).
-- **Emoji suggestions** via [rime-emoji](https://github.com/rime/rime-emoji):
-  typing 中国 also offers 🇨🇳, 微笑 offers 🙂, etc. Toggle with the 🈶️/🈚️
-  switch in the schema menu (<kbd>Ctrl</kbd>+<kbd>`</kbd> or <kbd>F4</kbd>).
-- **Caps Lock** commits the composition code instead of toggling layouts;
-  Shift keys do nothing (no accidental mode switches).
-- Horizontal stacked candidate window; inline candidate disabled in iTerm2.
-
-## Install (macOS / Squirrel)
+## 安装(macOS)
 
 ```bash
 git clone https://github.com/guochengqian/gordon-rime-config.git
 cp -R gordon-rime-config/squirrel/* ~/Library/Rime/
 ```
 
-Then redeploy Squirrel (menu bar → 重新部署, or
-`"/Library/Input Methods/Squirrel.app/Contents/MacOS/Squirrel" --reload`).
-
-The base schemas (`luna_pinyin`, `luna_pinyin_simp`) ship with Squirrel itself,
-so only the patches and dictionaries here are needed. Optionally add your own
-`custom_phrase.txt` for personal shortcut phrases (not included here).
-
-## Gotcha worth knowing
-
-`luna_pinyin_simp.schema.yaml` redefines `switches` after an `__include`, and
-librime's config compiler mishandles a `switches/+` append against that — it
-silently **replaces** the whole list, dropping the `zh_simp` switch so output
-falls back to traditional Chinese. That is why
-`luna_pinyin_simp.custom.yaml` patches the **full** switches list instead of
-appending. The emoji filter must also sit **before** the built-in `simplifier`,
-because the emoji dictionary is keyed on traditional Chinese.
-
-## Credits
-
-- [rime/squirrel](https://github.com/rime/squirrel) — the macOS Rime frontend
-- [rime/rime-emoji](https://github.com/rime/rime-emoji) — emoji OpenCC data (`squirrel/opencc/emoji*`)
-- [BlindingDark/rime-easy-en](https://github.com/BlindingDark/rime-easy-en) — inline English (`easy_en*`, `lua/easy_en.lua`)
+然后重新部署鼠须管(菜单栏 → 重新部署)。
