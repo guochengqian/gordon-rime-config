@@ -1,0 +1,8 @@
+patch:
+  style/candidate_list_layout: stacked
+  style/text_orientation: horizontal
+  style/candidate_format: "[label]. [candidate] [comment]"
+  style/inline_candidate: false
+  style/show_paging: true
+  app_options/com.googlecode.iterm2/ascii_mode: false
+  app_options/com.googlecode.iterm2/no_inline: true

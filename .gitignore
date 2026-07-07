@@ -1,0 +1,12 @@
+# Rime runtime / machine-specific state (never commit)
+build/
+sync/
+plum/
+*.userdb/
+*.bin
+installation.yaml
+user.yaml
+.DS_Store
+
+# personal data stays local
+custom_phrase.txt

@@ -1,0 +1,40 @@
+__patch:
+# Rx: BlindingDark/rime-easy-en:customize:schema=luna_pinyin_simp {
+  - patch/+:
+      __include: easy_en:/patch
+# }
+  - patch/+:
+      easy_en/enable_sentence: false
+      easy_en/initial_quality: 0
+  # Always commit the plain English "@" directly, even in Chinese mode
+  # (no candidate menu, no full-width ＠).
+  - patch/+:
+      "punctuator/half_shape/@": "@"
+      "punctuator/full_shape/@": "@"
+  # Emoji suggestions (rime-emoji): e.g. typing 中国 also offers 🇨🇳.
+  # Dict data lives in opencc/emoji*.{json,txt}; the emoji dict is traditional
+  # Chinese, so the filter must run BEFORE this schema's t2s simplifier.
+  # NOTE: switches must be listed in FULL here. luna_pinyin_simp.schema.yaml
+  # redefines `switches` after an __include, and librime's config compiler
+  # mishandles a `switches/+` append against that — it wipes the base list
+  # (losing zh_simp and with it simplified-Chinese output).
+  - patch/+:
+      switches:
+        - name: ascii_mode
+          reset: 0
+          states: [ 中文, 西文 ]
+        - name: full_shape
+          states: [ 半角, 全角 ]
+        - name: zh_simp
+          reset: 1
+          states: [ 漢字, 汉字 ]
+        - name: ascii_punct
+          states: [ 。，, ．， ]
+        - name: emoji_suggestion
+          reset: 1
+          states: [ "🈚️", "🈶️" ]
+      "engine/filters/@before 0": simplifier@emoji_suggestion
+      emoji_suggestion:
+        opencc_config: emoji.json
+        option_name: emoji_suggestion
+        tips: all
